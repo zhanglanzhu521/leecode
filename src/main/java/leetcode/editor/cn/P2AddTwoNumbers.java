@@ -18,90 +18,106 @@ package leetcode.editor.cn;//Java：两数相加
 
 import java.util.Objects;
 
-public class P2AddTwoNumbers{
-    public static void main(String[] args) {       
-    
-        Solution solution = new P2AddTwoNumbers().new Solution();
+public class P2AddTwoNumbers {
+	public static void main(String[] args) {
 
-		ListNode listNode = new P2AddTwoNumbers().new ListNode();
+		Solution solution = new P2AddTwoNumbers().new Solution();
 
-		listNode.add(3);
-		listNode.add(4);
-		listNode.add(2);
-
-
-		System.out.println(listNode);
-
-    }
-        // TO TEST      
-   //leetcode submit region begin(Prohibit modification and deletion)
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode(int x) { val = x; }
- * }
- */
-class Solution {
-    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-
-		return null;
-
-    }
-}
-
-class ListNode{
-
-	private int cur;
-	private ListNode last;
-	private int size;
+		ListNode listNode = new ListNode(2);
+		ListNode listNode4 = new ListNode(4);
+		listNode.next = listNode4;
+		ListNode listNode3 = new ListNode(3);
+		listNode4.next = listNode3;
 
 
-	public int getCur() {
-		return cur;
+		ListNode listNodeL5 = new ListNode(5);
+		ListNode listNodeL6 = new ListNode(6);
+		listNodeL5.next = listNodeL6;
+
+		ListNode listNodeL4 = new ListNode(4);
+		listNodeL6.next = listNodeL4;
+
+		ListNode listNode1 = solution.addTwoNumbers(listNode, listNodeL5);
+
+		System.out.println(listNode1);
+
+
+
 	}
+	// TO TEST
+	//leetcode submit region begin(Prohibit modification and deletion)
 
-	public void setCur(int cur) {
-		if (cur > 9 || cur < 0) {
-			throw new IllegalArgumentException("参数不符合");
+	/**
+	 * Definition for singly-linked list.
+	 * public class ListNode {
+	 * int val;
+	 * ListNode next;
+	 * ListNode(int x) { val = x; }
+	 * }
+	 */
+	class Solution {
+		public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+
+			int jinWei = 0;
+			ListNode res =null;
+			while (Objects.nonNull(l1) || Objects.nonNull(l2)) {
+				int curL1 = 0;
+				if (Objects.nonNull(l1)) {
+					curL1 = l1.val;
+				}
+				int curL2 = 0;
+				if (Objects.nonNull(l2)) {
+					curL2 = l2.val;
+				}
+
+				int curSum = curL1 + curL2;
+
+				if (curSum >= 10) {
+					int jianShu = curSum - 10;
+
+					int countAfter = jianShu + jinWei;
+					ListNode temp = new ListNode(countAfter);
+					temp.next = res;
+
+					res = temp;
+
+			;
+					jinWei = 1;
+				} else {
+					int countAfter = curSum + jinWei;
+					ListNode temp = new ListNode(countAfter);
+					temp.next = res;
+
+					res = temp;
+
+					if (jinWei > 0) {
+						jinWei = 0;
+					}
+				}
+
+				if (Objects.nonNull(l1)) {
+					l1 = l1.next;
+				}
+
+
+				if (Objects.nonNull(l2)) {
+					l2 = l2.next;
+				}
+
+			}
+
+			return res;
+
 		}
-		this.cur = cur;
+
+
+
 	}
 
-
-
-	public ListNode getLast() {
-		return last;
-	}
-
-	public void setLast(ListNode last) {
-		this.last = last;
-	}
-
-	public void add(int cur) {
-		if (cur > 9 || cur < 0) {
-			throw new IllegalArgumentException("参数不符合");
-		}
-
-		ListNode curL = new ListNode();
-
-		curL.setCur(this.cur);
-		curL.setLast(this.last);
-
-
-		if (size>0) {
-			this.setLast(curL);
-		}
-		size++;
-		this.setCur(cur);
-	}
-
-}
 //leetcode submit region end(Prohibit modification and deletion)
-
-        
-        
-        
-        
+public static class ListNode {
+    int val;
+    ListNode next;
+    ListNode(int x) { val = x; }
+}
 }
