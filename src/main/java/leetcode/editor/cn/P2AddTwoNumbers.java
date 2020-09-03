@@ -106,6 +106,13 @@ public class P2AddTwoNumbers {
 
 			}
 
+			if (jinWei > 0) {
+				ListNode temp = new ListNode(jinWei);
+				temp.next = res;
+
+				res = temp;
+			}
+
 			return res;
 
 		}
