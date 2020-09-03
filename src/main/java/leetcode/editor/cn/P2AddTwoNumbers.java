@@ -37,9 +37,13 @@ public class P2AddTwoNumbers {
 		ListNode listNodeL4 = new ListNode(4);
 		listNodeL6.next = listNodeL4;
 
+		ListNode listNodeL9 = new ListNode(9);
+		listNodeL4.next = listNodeL9;
+
 		ListNode listNode1 = solution.addTwoNumbers(listNode, listNodeL5);
 
-		System.out.println(listNode1);
+		ListNode convertor = solution.convertor(listNode1);
+		System.out.println(convertor);
 
 
 
@@ -61,14 +65,9 @@ public class P2AddTwoNumbers {
 			int jinWei = 0;
 			ListNode res =null;
 			while (Objects.nonNull(l1) || Objects.nonNull(l2)) {
-				int curL1 = 0;
-				if (Objects.nonNull(l1)) {
-					curL1 = l1.val;
-				}
-				int curL2 = 0;
-				if (Objects.nonNull(l2)) {
-					curL2 = l2.val;
-				}
+				int curL1 =Objects.isNull(l1)? 0:l1.val;
+
+				int curL2 =Objects.isNull(l2)? 0:l2.val;
 
 				int curSum = curL1 + curL2;
 
@@ -113,8 +112,21 @@ public class P2AddTwoNumbers {
 				res = temp;
 			}
 
-			return res;
+			return convertor(res);
 
+		}
+
+		public ListNode convertor(ListNode listNode) {
+			ListNode res =null;
+			while (Objects.nonNull(listNode)){
+				ListNode temp = new ListNode(listNode.val);
+				temp.next = res;
+
+				res = temp;
+				listNode = listNode.next;
+			}
+
+			return res;
 		}
 
 
