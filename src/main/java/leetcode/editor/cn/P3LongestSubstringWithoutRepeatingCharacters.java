@@ -42,6 +42,8 @@ public class P3LongestSubstringWithoutRepeatingCharacters {
 
 	// TO TEST
 	//leetcode submit region begin(Prohibit modification and deletion)
+
+
 	class Solution {
 		public int lengthOfLongestSubstring(String s) {
 
@@ -76,5 +78,17 @@ public class P3LongestSubstringWithoutRepeatingCharacters {
 	}
 //leetcode submit region end(Prohibit modification and deletion)
 
-
+	class Solution1 {
+		//左右边界滑动，i为左边界，j为有边界，保证边界内部无重复字符，判断是否有重复字符使用int[] m存储
+		public int lengthOfLongestSubstring(String s) {
+			int[] m = new int[128];
+			int len = 0;
+			for(int i = 0, j = 0; j < s.length(); j++){
+				i = Math.max(m[s.charAt(j)], i);
+				len = Math.max(len, j - i + 1);
+				m[s.charAt(j)] = j + 1;
+			}
+			return len;
+		}
+	}
 }
