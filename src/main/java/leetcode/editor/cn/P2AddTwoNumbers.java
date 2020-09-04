@@ -23,27 +23,26 @@ public class P2AddTwoNumbers {
 
 		Solution solution = new P2AddTwoNumbers().new Solution();
 
-		ListNode listNode = new ListNode(2);
-		ListNode listNode4 = new ListNode(4);
-		listNode.next = listNode4;
-		ListNode listNode3 = new ListNode(3);
-		listNode4.next = listNode3;
+		ListNode listNode = new ListNode(1);
+//		ListNode listNode4 = new ListNode(4);
+//		listNode.next = listNode4;
+//		ListNode listNode3 = new ListNode(3);
+//		listNode4.next = listNode3;
 
 
-		ListNode listNodeL5 = new ListNode(5);
-		ListNode listNodeL6 = new ListNode(6);
+		ListNode listNodeL5 = new ListNode(9);
+		ListNode listNodeL6 = new ListNode(9);
 		listNodeL5.next = listNodeL6;
 
-		ListNode listNodeL4 = new ListNode(4);
-		listNodeL6.next = listNodeL4;
-
-		ListNode listNodeL9 = new ListNode(9);
-		listNodeL4.next = listNodeL9;
+//		ListNode listNodeL4 = new ListNode(4);
+//		listNodeL6.next = listNodeL4;
+//
+//		ListNode listNodeL9 = new ListNode(9);
+//		listNodeL4.next = listNodeL9;
 
 		ListNode listNode1 = solution.addTwoNumbers(listNode, listNodeL5);
 
-		ListNode convertor = solution.convertor(listNode1);
-		System.out.println(convertor);
+		System.out.println(listNode1);
 
 
 
@@ -84,14 +83,22 @@ public class P2AddTwoNumbers {
 					jinWei = 1;
 				} else {
 					int countAfter = curSum + jinWei;
-					ListNode temp = new ListNode(countAfter);
-					temp.next = res;
 
-					res = temp;
+					if (countAfter >= 10) {
+						int jianShu = countAfter - 10;
+						ListNode temp = new ListNode(jianShu);
 
-					if (jinWei > 0) {
+						temp.next = res;
+						res = temp;
+						jinWei = 1;
+
+					} else {
+						ListNode temp = new ListNode(countAfter);
+						temp.next = res;
+						res = temp;
 						jinWei = 0;
 					}
+
 				}
 
 				if (Objects.nonNull(l1)) {
