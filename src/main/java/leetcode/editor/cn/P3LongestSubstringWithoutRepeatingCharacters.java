@@ -97,7 +97,9 @@ public class P3LongestSubstringWithoutRepeatingCharacters {
 			// 哈希集合，记录每个字符是否出现过
 			Set<Character> occ = new HashSet<Character>();
 			int n = s.length();
-			// 右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
+			// rk右指针，初始值为 -1，相当于我们在字符串的左边界的左侧，还没有开始移动
+			//i就是左指针，没循环一次i就是说左指针右移一位，
+			//OCC的意义就是记录到本次循环位置存在哪些字符，一旦相同则说明右指针不需要继续移动下去了
 			int rk = -1, ans = 0;
 			for (int i = 0; i < n; ++i) {
 				if (i != 0) {
